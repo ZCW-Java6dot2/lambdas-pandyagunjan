@@ -138,17 +138,13 @@ public class PersonTest {
     }
 
     @Test
-    public void printPersonTestForAnonymousClass(){
-       //Bob is printed as he has age between 18-25
+    public void printPersonTestForAnonymousClass() {
+        //Bob is printed as he has age between 18-25
         Person.printPersons(
                 roster,
-                new CheckPerson() {
-                    public boolean test(Person p) {
-                        return p.getGender() == Person.Sex.MALE
-                                && p.getAge() >= 18
-                                && p.getAge() <= 25;
-                    }
-                }
+                (Person p) -> p.getGender() == Person.Sex.MALE
+                        && p.getAge() >= 18
+                        && p.getAge() <= 25
         );
     }
 
