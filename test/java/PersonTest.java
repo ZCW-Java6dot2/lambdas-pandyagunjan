@@ -74,14 +74,14 @@ public class PersonTest {
         LocalDate actual =roster.get(0).getBirthday();
         Assert.assertEquals(expected, actual);
     }
-    @Test
-    public void testSetBirthday(){
-        LocalDate expected = LocalDate.of(1990, 2, 15);
-        roster.get(0).setBirthday(expected);
-        LocalDate actual = roster.get(0).getBirthday();
-        Assert.assertEquals(expected, actual);
-        roster.get(0).setBirthday(LocalDate.of(1980, 1, 25));
-    }
+//    @Test
+//    public void testSetBirthday(){
+//        LocalDate expected = LocalDate.of(1990, 2, 15);
+//        roster.get(0).setBirthday(expected);
+//        LocalDate actual = roster.get(0).getBirthday();
+//        Assert.assertEquals(expected, actual);
+//        roster.get(0).setBirthday(LocalDate.of(1980, 1, 25));
+//    }
     @Test
     public void testGetGender(){
         Person.Sex expected = Person.Sex.MALE;
@@ -127,19 +127,21 @@ public class PersonTest {
         Assert.assertEquals(expectedAge, actualAge);
     }
     @Test
-    public void printPersonTest(){
-
-    }
-
-    @Test
     public void PrintPersonOlderThanTest(){
-
-        Person.printPersonsOlderThan(roster, 50);
+    // Prints Fred as age is 40
+        Person.printPersonsOlderThan(roster, 35);
     }
     @Test
     public void printPersonsWithinAgeRangeTest(){
-
+      //Prints Fred and Jane
         Person.printPersonsWithinAgeRange(roster, 30,50);
     }
+
+    @Test
+    public void printPersonTestForLocal(){
+       //Bob is printed as he has age between 18-25
+        Person.printPersons(roster, new CheckPersonEligibleForSelectiveService());
+    }
+
 
 }

@@ -3,8 +3,7 @@ import java.time.Period;
 import java.util.List;
 
 
-public class Person {
-
+public class Person  {
     public enum Sex {
         MALE, FEMALE
     }
@@ -80,4 +79,14 @@ public class Person {
             }
         }
     }
+
+    public static void printPersons(List<Person> roster, CheckPerson tester) {
+        for (Person p : roster) {
+            if (tester.test(p)) {
+                p.printPerson();
+            }
+        }
+    }
+
+
 }
