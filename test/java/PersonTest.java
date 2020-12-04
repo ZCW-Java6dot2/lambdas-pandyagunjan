@@ -5,24 +5,39 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 public class PersonTest {
-    Person person1;
-    Person person2;
-    Person person3;
-    List<Person> people;
+     List<Person> roster;
+
     @Before
     public void setup(){
-        people = new ArrayList<>();
-        person1 = new Person("Bob", LocalDate.of(1980, 1, 25), Person.Sex.MALE, "bob@bob.com");
-        person2 = new Person("Sally", LocalDate.of(2000, 10, 5), Person.Sex.FEMALE, "sally@sally.com");
-        person3 = new Person("Guy", LocalDate.of(1995, 6, 13), Person.Sex.MALE, "guy@guy.com");
-        people.add(person1);
-        people.add(person2);
-        people.add(person3);
+            roster = new ArrayList<>();
+            roster.add(
+                    new Person(
+                            "Fred",
+                            LocalDate.of(1980, 6, 20),
+                            Person.Sex.MALE,
+                            "fred@example.com"));
+            roster.add(
+                    new Person(
+                            "Jane",
+                            LocalDate.of(1990, 7, 15),
+                            Person.Sex.FEMALE, "jane@example.com"));
+            roster.add(
+                    new Person(
+                            "George",
+                            LocalDate.of(1991, 8, 13),
+                            Person.Sex.MALE, "george@example.com"));
+            roster.add(
+                    new Person(
+                            "Bob",
+                            LocalDate.of(2000, 9, 12),
+                            Person.Sex.MALE, "bob@example.com"));
+
+
+
     }
     @Test
     public void testConstructor(){
-     //   Person person1 = new Person("Bob", LocalDate.now(), Person.Sex.MALE, "bob@bob.com");
-        Assert.assertNotNull(person1);
+            Assert.assertNotNull(roster.get(0));
     }
     @Test
     public void testNullaryConstructor(){
@@ -31,77 +46,74 @@ public class PersonTest {
     }
     @Test
     public void testGetName(){
-      //  Person person1 = new Person("Bob", LocalDate.of(1980, 1, 25), Person.Sex.MALE, "bob@bob.com");
-        String expected = "Bob";
-        String actual = person1.getName();
+        String expected = "Fred";
+        String actual = roster.get(0).getName();
         Assert.assertEquals(expected, actual);
     }
     @Test
     public void testSetName(){
-     //   Person person1 = new Person("Bob", LocalDate.of(1980, 1, 25), Person.Sex.MALE, "bob@bob.com");
         String expected = "Todd";
-        person1.setName(expected);
-        String actual = person1.getName();
+        roster.get(0).setName(expected);
+        String actual = roster.get(0).getName();
         Assert.assertEquals(expected, actual);
     }
     @Test
     public void testToString(){
-     //   Person person1 = new Person("Bob", LocalDate.of(1980, 1, 25), Person.Sex.MALE, "bob@bob.com");
-        String expected = "java.Person{" +
-                "name='" + person1.getName() + '\'' +
-                ", birthday=" + person1.getBirthday() +
-                ", gender=" + person1.getGender() +
-                ", emailAddress='" + person1.getEmailAddress() + '\'' +
+         String expected = "java.Person{" +
+                "name='" + roster.get(0).getName() + '\'' +
+                ", birthday=" + roster.get(0).getBirthday() +
+                ", gender=" + roster.get(0).getGender() +
+                ", emailAddress='" + roster.get(0).getEmailAddress() + '\'' +
                 '}';
-        String actual = person1.toString();
+        String actual = roster.get(0).toString();
         Assert.assertEquals(expected, actual);
     }
     @Test
     public void testGetBirthday(){
-        LocalDate expected = LocalDate.of(1980, 1, 25);
-        LocalDate actual = person1.getBirthday();
+        LocalDate expected =  LocalDate.of(1980, 6, 20);
+        LocalDate actual =roster.get(0).getBirthday();
         Assert.assertEquals(expected, actual);
     }
     @Test
     public void testSetBirthday(){
         LocalDate expected = LocalDate.of(1990, 2, 15);
-        person1.setBirthday(expected);
-        LocalDate actual = person1.getBirthday();
+        roster.get(0).setBirthday(expected);
+        LocalDate actual = roster.get(0).getBirthday();
         Assert.assertEquals(expected, actual);
-        person1.setBirthday(LocalDate.of(1980, 1, 25));
+        roster.get(0).setBirthday(LocalDate.of(1980, 1, 25));
     }
     @Test
     public void testGetGender(){
         Person.Sex expected = Person.Sex.MALE;
-        Person.Sex actual = person1.getGender();
+        Person.Sex actual = roster.get(0).getGender();
         Assert.assertEquals(expected, actual);
     }
     @Test
     public void testSetGender(){
         Person.Sex expected = Person.Sex.FEMALE;
-        person1.setGender(expected);
-        Person.Sex actual = person1.getGender();
+        roster.get(0).setGender(expected);
+        Person.Sex actual = roster.get(0).getGender();
         Assert.assertEquals(expected, actual);
-        person1.setGender(Person.Sex.MALE);
+        roster.get(0).setGender(Person.Sex.MALE);
     }
     @Test
     public void testGetEmail(){
-        String expected = "bob@bob.com";
-        String actual = person1.getEmailAddress();
+        String expected = "fred@example.com";
+        String actual =roster.get(0).getEmailAddress();
         Assert.assertEquals(expected, actual);
     }
     @Test
     public void testSetEmail(){
         String expected = "johnny@bob.com";
-        person1.setEmailAddress(expected);
-        String actual = person1.getEmailAddress();
+        roster.get(0).setEmailAddress(expected);
+        String actual = roster.get(0).getEmailAddress();
         Assert.assertEquals(expected, actual);
-        person1.setEmailAddress("bob@bob.com");
+        roster.get(0).setEmailAddress("bob@bob.com");
     }
     @Test
     public void testGetAge(){
         int fakeAge = 10;
-        int age = person1.getAge();
+        int age = roster.get(0).getAge();
         Assert.assertNotEquals(fakeAge, age);
     }
     @Test
@@ -110,7 +122,7 @@ public class PersonTest {
 
         int expectedAge = 40;
         //when
-        int actualAge = person1.getAge();
+        int actualAge = roster.get(0).getAge();
         //then
         Assert.assertEquals(expectedAge, actualAge);
     }
@@ -122,12 +134,12 @@ public class PersonTest {
     @Test
     public void PrintPersonOlderThanTest(){
 
-        Person.printPersonsOlderThan(people, 50);
+        Person.printPersonsOlderThan(roster, 50);
     }
     @Test
     public void printPersonsWithinAgeRangeTest(){
 
-        Person.printPersonsWithinAgeRange(people, 30,50);
+        Person.printPersonsWithinAgeRange(roster, 30,50);
     }
 
 }
