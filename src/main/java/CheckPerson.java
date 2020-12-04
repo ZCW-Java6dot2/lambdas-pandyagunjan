@@ -1,4 +1,4 @@
 public interface CheckPerson {
-
-    boolean test(Person p);
+//Functional interface as it contains 1 abstract method.
+boolean test(Person p);
 }

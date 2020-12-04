@@ -4,6 +4,7 @@ import org.junit.Test;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
 public class PersonTest {
      List<Person> roster;
 
@@ -138,18 +139,14 @@ public class PersonTest {
     }
 
     @Test
-    public void printPersonTestForAnonymousClass(){
-       //Bob is printed as he has age between 18-25
+    public void printPersonTestForLambdaClass(){
+       //Bob is printed as his age is in between 18-25
         Person.printPersons(
-                roster,
-                new CheckPerson() {
-                    public boolean test(Person p) {
-                        return p.getGender() == Person.Sex.MALE
+                        roster,
+                        (Person p) -> p.getGender() == Person.Sex.MALE
                                 && p.getAge() >= 18
-                                && p.getAge() <= 25;
-                    }
-                }
-        );
+                                && p.getAge() <= 25
+                );
     }
 
 
